@@ -1,0 +1,27 @@
+{
+  "name": "battleship",
+  "version": "1.0.0",
+  "description": "Made by **roznerx** (ignaciorosner@gmail.com)",
+  "private": true,
+  "scripts": {
+    "test": "jest",
+    "watch": "webpack --watch",
+    "build": "webpack"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/roznerx/battleship.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/roznerx/battleship/issues"
+  },
+  "homepage": "https://github.com/roznerx/battleship#readme",
+  "devDependencies": {
+    "jest": "^27.5.1",
+    "webpack": "^5.72.0",
+    "webpack-cli": "^4.9.2"
+  }
+}
