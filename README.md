@@ -1,2 +1,3 @@
-# battleship
-Battleship for The Odin Project
+# "Battleship" for The Odin Project
+
+Made by **roznerx** (ignaciorosner@gmail.com)
