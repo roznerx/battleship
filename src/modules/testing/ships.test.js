@@ -1,8 +1,8 @@
-import { ship } from './ships';
+import { ship } from '../ships';
 
 test('ship is created successfully', () => {
     expect(ship('Carrier', 5).name).toMatch('Carrier');
-    expect(ship('Carrier', 5).length).toBe(5);
+    expect(ship('Carrier', 5).size).toBe(5);
     expect(ship('Carrier', 5).dmgArr).toEqual(expect.arrayContaining([]));
 });
 

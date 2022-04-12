@@ -1,13 +1,14 @@
-let ship = function createShip(name, length) {
+let ship = (name, size) => {
 	return {
 		name: name,
-		length: length,
+		size: size,
 		dmgArr: [],
+		location: [],
 		hit(p) {
 			this.dmgArr.push(p);
 		},
 		isSunk() {
-			if (this.dmgArr.length == length) {
+			if (this.dmgArr.length == this.size) {
 				return true;
 			}
 		}
@@ -16,11 +17,11 @@ let ship = function createShip(name, length) {
 
 /*
 let ships = [
-    carrier = createShip('Carrier', 5),
-    battleship = createShip('Battleship', 4),
-    destroyer = createShip('Destroyer', 3),
-    submarine = createShip('Submarine', 3),
-    patrolBoat = createShip('Patrol Boat', 2)
+    carrier = ship('Carrier', 5),
+    battleship = ship('Battleship', 4),
+    destroyer = ship('Destroyer', 3),
+    submarine = ship('Submarine', 3),
+    patrolBoat = ship('Patrol Boat', 2)
 ]
 
 let playerShips = [...ships];
