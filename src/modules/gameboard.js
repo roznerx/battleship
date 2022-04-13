@@ -42,6 +42,7 @@ let gameBoard = {
                         ps.location.forEach(psc => {
                             if (psc == atkCoords) {
                                 ps.hit(atkCoords);
+                                ps.isSunk();
                                 if (ps.isSunk() == true) {
                                     this.sunkenShips.push(ps);
                                 }

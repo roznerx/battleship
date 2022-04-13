@@ -68,8 +68,8 @@ test('sunken ships', () => {
     gameBoard.receiveAttack(attack3);
     gameBoard.receiveAttack(attack4);
     gameBoard.receiveAttack(attack5);
-    /*expect(gameBoard.sunkenShips).toEqual(expect.arrayContaining(
+    expect(gameBoard.sunkenShips).toEqual(expect.arrayContaining(
         [carrier]
-    ));*/
+    ));
     expect(carrier.isSunk()).toBeTruthy();
 });
