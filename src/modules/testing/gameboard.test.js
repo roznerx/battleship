@@ -54,15 +54,11 @@ test('sunken ships', () => {
     let carrier = ship('Carrier', 5);
     let coords = ["A1","A2","A3","A4","A5"]
     gameBoard.placeShip(carrier, coords)
-    //let attack = ["A1","A2","A3","A4","A5"];
     let attack1 = "A1";
     let attack2 = "A2";
     let attack3 = "A3";
     let attack4 = "A4";
     let attack5 = "A5";
-    //Attack containing five coordinates due to testing purposes
-    //Should be limited to one coordinate per attack during the game
-    //gameBoard.receiveAttack(attack);
     gameBoard.receiveAttack(attack1);
     gameBoard.receiveAttack(attack2);
     gameBoard.receiveAttack(attack3);
@@ -71,5 +67,5 @@ test('sunken ships', () => {
     expect(gameBoard.sunkenShips).toEqual(expect.arrayContaining(
         [carrier]
     ));
-    expect(carrier.isSunk()).toBeTruthy();
+    expect(carrier.isSunk).toBeTruthy();
 });
