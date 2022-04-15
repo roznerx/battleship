@@ -7,8 +7,29 @@
     <title>Battleship</title>
     <link rel="stylesheet" type="text/css" href="style.css" charset="utf-8">
     <link rel="icon" href="">
+    <script src="main.js" type="text/javascript" async defer></script>
 </head>
 <body>
-    <script src="main.js" type="text/javascript" async defer></script>
+    <header>
+        <h1 id="header-title" class="header-text">BATTLESHIP</h1>
+        <h3 id="header-credits" class="header-text">made by <a href="https://github.com/roznerx" target="_blank">roznerx</a></h3>
+    </header>
+    <div id="content">
+        <div id="human-section">
+            <div id="human-info">
+                <h3 id="player-name"></h3>
+            </div>
+            <div id="human-gameboard"></div>
+            <div id="human-fleet">
+                <h3 id="set-and-fleet">Your Fleet</h3>
+                <div id="fleet-status">
+                    <div id="fleet-names"></div>
+                    <div id="fleet-health"></div>
+                </div>
+            </div>
+        </div>
+        <div id="HUD-section"></div>
+        <div id="cpu-section"></div>
+    </div>
 </body>
 </html>

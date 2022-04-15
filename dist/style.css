@@ -1,0 +1,180 @@
+@font-face {
+    font-family: 'pirate_shipregular';
+    src: 
+        url('./font/Pirate\ Ship.ttf') format('tff'),
+        url('./font/pirate_ship-webfont.woff2') format('woff2'),
+        url('./font/pirate_ship-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+html, body { 
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 20% 80%;
+    grid-column-gap: 0px;
+    grid-row-gap: 0px;
+    width: 100vw;
+    height: 100vh;
+    background: url('./img/ocean.jpg') no-repeat;
+    background-size: cover;
+    background-position: center;
+}
+
+
+/* HEADER */
+
+header {
+    background-color: #001e2a;
+    border: 15px solid transparent;
+    border-image: url('./img/metal.jpg') 100 repeat;
+    color: white;
+    display: grid;
+    grid-template-columns: 70% 30%;
+    grid-template-rows: 1fr;
+    grid-column-gap: 0px;
+    grid-row-gap: 0px;
+}
+
+#header-title {
+    font-family: 'pirate_shipregular';
+    font-size: 10vh;
+    margin: auto;
+    top: 10%;
+    position: relative;
+    letter-spacing: 1.2vw;
+}
+
+#header-credits {
+    font-family: 'pirate_shipregular';
+    font-size: 5vh;
+    margin: auto;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+a:hover {
+    box-shadow: inset 0 0 10px yellow;
+}
+
+/* CONTENT */
+
+#content {
+    display: grid;
+    grid-template-columns: 40% 20% 40%;
+    grid-template-rows: 1fr;
+    grid-column-gap: 0px;
+    grid-row-gap: 0px;
+}
+
+/* HUMAN SECTION */
+
+#human-section {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 20% 60% 20%;
+    grid-column-gap: 0px;
+    grid-row-gap: 0px;
+}
+
+#player-name {
+    border: 8px solid transparent;
+    border-image: url('./img/metal.jpg') 40 repeat;
+    background-color: white;
+    color: black;
+    font-family: 'pirate_shipregular';
+    margin-left: 20%;
+    margin-right: 20%;
+    width: auto;
+    height: 30%;
+    text-align: center;
+    padding-top: 2.5%;
+    letter-spacing: 0.3vw;
+    position: relative;
+    top: 15%;
+    font-size: 1.3rem;
+    opacity: 90%;
+}
+
+#human-gameboard {
+    display: grid;
+    grid-template-columns: repeat(10, 1fr);
+    grid-template-rows: repeat(10, 1fr);
+    grid-column-gap: 3px;
+    grid-row-gap: 1px;
+    margin-left: 15%;
+    margin-right: 15%;  
+    border: 8px solid transparent;
+    border-image: url('./img/metal.jpg') 40 repeat;
+}
+
+
+.board-coord {
+    border: 1px solid black;
+    width: 100%;
+    text-align: center;
+    background-color: white;
+    opacity: 65%;
+    color: black;
+}
+
+/* HUD */
+
+/* FLEET */
+
+#human-fleet {
+    display: grid;
+    grid-template-columns: 30% 70%;
+    grid-template-rows: 1fr;
+    grid-column-gap: 0px;
+    grid-row-gap: 0px;
+}
+
+#set-and-fleet {
+    border: 8px solid transparent;
+    border-image: url('./img/metal.jpg') 40 repeat;
+    background-color: white;
+    color: black;
+    font-family: 'pirate_shipregular';
+    font-size: 1.3rem;
+    text-align: center;
+    margin-left: 10%;
+    margin-right: 10%;
+    padding-top: 10%;
+    height: 30%;
+    position: relative;
+    top: 5%;
+}
+
+#fleet-status {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 50% 50%;
+    grid-column-gap: 0px;
+    grid-row-gap: 0px;
+}
+
+#fleet-names {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    grid-template-rows: 1fr;
+    grid-column-gap: 0px;
+    grid-row-gap: 0px;
+}
+
+#fleet-health {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    grid-template-rows: 1fr;
+    grid-column-gap: 0px;
+    grid-row-gap: 0px;
+}

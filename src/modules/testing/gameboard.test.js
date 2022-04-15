@@ -2,47 +2,51 @@ import { gameBoard } from '../gameboard';
 import { ship } from '../ships';
 
 test('coordinates are created', () => {
-    gameBoard.makeCoordinates();
-    expect(gameBoard.coordinatesArr[0]).toMatchObject(
+    let testBoard = gameBoard();
+    testBoard.makeCoordinates();
+    expect(testBoard.coordinatesArr[0]).toMatchObject(
         {"name": "A1", "status": "empty", "damage": 0}
         //This is fine, OK? No way I'm testing a huge object full of arrays!
     );
 });
 
 test('ship is placed in the gameboard', () => {
-    gameBoard.makeCoordinates();
+    let testBoard = gameBoard();
+    testBoard.makeCoordinates();
     let carrier = ship('Carrier', 5);
     let coords = ["A1","A2","A3","A4","A5"]
-    gameBoard.placeShip(carrier, coords)
+    testBoard.placeShip(carrier, coords)
     expect(carrier.location).toEqual(expect.arrayContaining(
         ["A1","A2","A3","A4","A5"]
     ));
-    expect(gameBoard.coordinatesArr[0]).toMatchObject(
+    expect(testBoard.coordinatesArr[0]).toMatchObject(
         {"name": "A1", "status": "occupied", "damage": 0}
     );
 });
 
 test('hit misses', () => {
-    gameBoard.makeCoordinates();
+    let testBoard = gameBoard();
+    testBoard.makeCoordinates();
     let carrier = ship('Carrier', 5);
     let coords = ["A1","A2","A3","A4","A5"]
-    gameBoard.placeShip(carrier, coords)
+    testBoard.placeShip(carrier, coords)
     let attack = ["A6"];
-    gameBoard.receiveAttack(attack);
-    expect(gameBoard.missedAttacks).toEqual(expect.arrayContaining(
+    testBoard.receiveAttack(attack);
+    expect(testBoard.missedAttacks).toEqual(expect.arrayContaining(
         ["A6"]
     ));
 });
 
 test('hit... Well, hits!', () => {
-    gameBoard.makeCoordinates();
+    let testBoard = gameBoard();
+    testBoard.makeCoordinates();
     let carrier = ship('Carrier', 5);
     let coords = ["A1","A2","A3","A4","A5"]
-    gameBoard.placeShip(carrier, coords)
+    testBoard.placeShip(carrier, coords)
     let attack1 = "A4";
-    gameBoard.receiveAttack(attack1);
+    testBoard.receiveAttack(attack1);
     let attack2 = "A3";
-    gameBoard.receiveAttack(attack2);
+    testBoard.receiveAttack(attack2);
     expect(carrier.dmgArr).toEqual(expect.arrayContaining(
         ["A4", "A3"]
     ));
@@ -50,21 +54,22 @@ test('hit... Well, hits!', () => {
 });
 
 test('sunken ships', () => {
-    gameBoard.makeCoordinates();
+    let testBoard = gameBoard();
+    testBoard.makeCoordinates();
     let carrier = ship('Carrier', 5);
     let coords = ["A1","A2","A3","A4","A5"]
-    gameBoard.placeShip(carrier, coords)
+    testBoard.placeShip(carrier, coords)
     let attack1 = "A1";
     let attack2 = "A2";
     let attack3 = "A3";
     let attack4 = "A4";
     let attack5 = "A5";
-    gameBoard.receiveAttack(attack1);
-    gameBoard.receiveAttack(attack2);
-    gameBoard.receiveAttack(attack3);
-    gameBoard.receiveAttack(attack4);
-    gameBoard.receiveAttack(attack5);
-    expect(gameBoard.sunkenShips).toEqual(expect.arrayContaining(
+    testBoard.receiveAttack(attack1);
+    testBoard.receiveAttack(attack2);
+    testBoard.receiveAttack(attack3);
+    testBoard.receiveAttack(attack4);
+    testBoard.receiveAttack(attack5);
+    expect(testBoard.sunkenShips).toEqual(expect.arrayContaining(
         [carrier]
     ));
     expect(carrier.isSunk).toBeTruthy();

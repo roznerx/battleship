@@ -19,9 +19,7 @@ let player = (name, type) => {
             } else if (this.type == 'CPU') {
                 function makeCoord() {
                     let randomizer = (value) => value[Math.floor(Math.random() * value.length)];
-                    let randomCoord = () => {
-                        return randomizer(gameBoard.columns) + randomizer(gameBoard.rows);
-                    }
+                    let randomCoord = () => randomizer(gameBoard.columns) + randomizer(gameBoard.rows);
                     gameBoard.coordinatesArr.forEach(c => {
                         if (c.name == randomCoord && c.damage == 1) {
                             makeCoord();
@@ -33,6 +31,6 @@ let player = (name, type) => {
             }
         },
     }
-}
+};
 
 export { player };

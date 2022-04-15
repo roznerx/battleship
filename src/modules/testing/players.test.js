@@ -17,9 +17,10 @@ test('human attack', () => {
 }); 
 
 test('CPU attack', () => {
+    let testBoard = gameBoard();
     let captainRamius = player('Captain Marko Alexandrovich Ramius', "CPU");
     expect(captainRamius.attack("H1")).not.toBe("H1");
-    gameBoard.coordinatesArr.forEach(c => {
+    testBoard.coordinatesArr.forEach(c => {
         expect(captainRamius.attack(c)).not.toBe(c);
     });
 });
