@@ -171,10 +171,47 @@ a:hover {
     grid-row-gap: 0px;
 }
 
+.fleet-member {
+    border: 5px solid transparent;
+    border-image: url('./img/metal.jpg') 68 repeat;
+    background-color: white;
+    color: black;
+    font-family: 'pirate_shipregular';
+    margin: 0;
+    text-align: center;
+    height: 40%;
+    position: relative;
+    top: 15%;
+    margin-left: 5%;
+    font-size: 0.7em;
+    width: 75%;
+    padding-top: 10%;
+}
+
 #fleet-health {
     display: grid;
     grid-template-columns: repeat(5, 1fr);
     grid-template-rows: 1fr;
     grid-column-gap: 0px;
     grid-row-gap: 0px;
+}
+
+.ship-health {
+    border: 5px solid transparent;
+    border-image: url('./img/metal.jpg') 68 repeat;
+    background-color: white;
+    color: black;
+    font-family: 'pirate_shipregular';
+    margin: 0;
+    height: 40%;
+    position: relative;
+    top: 15%;
+    margin-left: 5%;
+    font-size: 0.7em;
+    width: 75%;
+    padding-top: 10%;
+}
+
+.ship-health-part {
+
 }

@@ -43,9 +43,6 @@ function setNewGame() {
     (0,_dom__WEBPACK_IMPORTED_MODULE_4__.renderFleetName)(playerOne, fleetNames);
     (0,_dom__WEBPACK_IMPORTED_MODULE_4__.renderFleetHealth)(playerOne, fleetHealth);
 
-    /*fleet-names.forEach(e => {
-        e.style.innerHTML = e.id;
-    })*/
 
 
 }
@@ -171,7 +168,7 @@ let player = (name, type) => {
             battleship: (0,_ships__WEBPACK_IMPORTED_MODULE_0__.ship)('Battleship', 4),
             destroyer: (0,_ships__WEBPACK_IMPORTED_MODULE_0__.ship)('Destroyer', 3),
             submarine: (0,_ships__WEBPACK_IMPORTED_MODULE_0__.ship)('Submarine', 3),
-            patrolBoat: (0,_ships__WEBPACK_IMPORTED_MODULE_0__.ship)('Patrol Boat', 2)
+            patrolBoat: (0,_ships__WEBPACK_IMPORTED_MODULE_0__.ship)('Patrol', 2)
         },
         turn: false,
         attack(atkCoords) {
@@ -224,33 +221,45 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "renderFleetHealth": () => (/* binding */ renderFleetHealth),
 /* harmony export */   "renderFleetName": () => (/* binding */ renderFleetName)
 /* harmony export */ });
-let elementMaker = (type, id, className) => {
+let elementMaker = (type, id, className, innerHTML) => {
     let e = document.createElement(type);
     e.id = id;
     e.className = className;
+    e.innerHTML = innerHTML;
     return e;
 };
 
 function renderBoard(boardToRender, eToAppend) {
     boardToRender.coordinatesArr.forEach(e => {
-        let coordRender = elementMaker('div', e.name, 'board-coord');
+        let coordRender = elementMaker('div', e.name, 'board-coord', '');
         eToAppend.appendChild(coordRender);
     })
 }
 
 function renderFleetName (player, eToAppend) {
-    Object.keys(player.ships).forEach(s => {
-        let nameRender = elementMaker('h4', s.name /* REVISAR EL NOMBRE */, 'fleet-member');
-        eToAppend.appendChild(nameRender);        
+    let playerFleet = Object.values(player.ships);
+    playerFleet.forEach(s => {
+        let nameRender = elementMaker('h4', `${s.name}-mini`, 'fleet-member', s.name);
+        eToAppend.appendChild(nameRender);
     });
 }
 
 function renderFleetHealth (player, eToAppend) {
-    Object.keys(player.ships).forEach(s => {
-        let healthRender = elementMaker('div', '', 'ship-health');
-        eToAppend.appendChild(healthRender);        
+    let playerFleet = Object.values(player.ships);
+    playerFleet.forEach(s => {
+        let healthRender = elementMaker('div', `${s.name}-health`, 'ship-health', '');
+        eToAppend.appendChild(healthRender);
+        for (let i = 0; i < s.size; i++) {
+            let healthBarPart = elementMaker('div', `${s.name}-health-part`, 'ship-health-part', '');
+        }
     });
 }
+
+/*
+healthBarPart.style.display = 'grid';
+healthBarPart.syle.gridTemplateColumns = `repeat(${s.size}, 1fr)`;
+healthBarPart.style.gridTemplateRows = '1fr';
+healthRender.appendChild(healthBarPart);*/
 
 
 

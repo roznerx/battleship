@@ -27,9 +27,6 @@ function setNewGame() {
     renderFleetName(playerOne, fleetNames);
     renderFleetHealth(playerOne, fleetHealth);
 
-    /*fleet-names.forEach(e => {
-        e.style.innerHTML = e.id;
-    })*/
 
 
 }
