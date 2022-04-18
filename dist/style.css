@@ -78,7 +78,7 @@ a:hover {
 
 /* HUMAN SECTION */
 
-#human-section {
+#human-section, #cpu-section {
     display: grid;
     grid-template-columns: 1fr;
     grid-template-rows: 20% 60% 20%;
@@ -86,7 +86,7 @@ a:hover {
     grid-row-gap: 0px;
 }
 
-#player-name {
+#player-name, #cpu-name {
     border: 8px solid transparent;
     border-image: url('./img/metal.jpg') 40 repeat;
     background-color: white;
@@ -105,12 +105,17 @@ a:hover {
     opacity: 90%;
 }
 
-#human-gameboard {
+#cpu-name {
+    padding-bottom: 1%;
+    font-size: 0.8rem;
+}
+
+#human-gameboard, #cpu-gameboard {
     display: grid;
     grid-template-columns: repeat(10, 1fr);
     grid-template-rows: repeat(10, 1fr);
-    grid-column-gap: 3px;
-    grid-row-gap: 1px;
+    grid-column-gap: 0;
+    grid-row-gap: 0;
     margin-left: 15%;
     margin-right: 15%;  
     border: 8px solid transparent;
@@ -129,9 +134,52 @@ a:hover {
 
 /* HUD */
 
+#HUD-section {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 20% 40% 40%;
+    grid-column-gap: 0px;
+    grid-row-gap: 0px; 
+}
+
+#turn-info, #hit-info {
+    border: 8px solid transparent;
+    border-image: url('./img/metal.jpg') 40 repeat;
+    background-color: white;
+    color: black;
+    font-family: 'pirate_shipregular';
+    width: 80%;
+    height: 30%;
+    text-align: center;
+    padding-top: 2.5%;
+    letter-spacing: 0.3vw;
+    position: relative;
+    top: 15%;
+    font-size: 1.3rem;
+    opacity: 90%;
+    left: 8%;
+}
+
+#hit-info {
+    width: 50%;
+    height: 15%;
+    margin: 0;
+    left: 22%;
+    top: 5%;
+}
+
+#radar-gif {
+    height: 160px;
+    width: 160px;
+    border: 8px solid transparent;
+    border-image: url('./img/metal.jpg') 40 repeat;
+    margin-left: 22%;
+    margin-top: 10%;
+}
+
 /* FLEET */
 
-#human-fleet {
+#human-fleet, #cpu-fleet {
     display: grid;
     grid-template-columns: 30% 70%;
     grid-template-rows: 1fr;
@@ -139,13 +187,13 @@ a:hover {
     grid-row-gap: 0px;
 }
 
-#set-and-fleet {
+#set-and-fleet, #enemy-fleet {
     border: 8px solid transparent;
     border-image: url('./img/metal.jpg') 40 repeat;
     background-color: white;
     color: black;
     font-family: 'pirate_shipregular';
-    font-size: 1.3rem;
+    font-size: 1rem;
     text-align: center;
     margin-left: 10%;
     margin-right: 10%;
@@ -155,7 +203,7 @@ a:hover {
     top: 5%;
 }
 
-#fleet-status {
+#fleet-status, #enemy-fleet-status {
     display: grid;
     grid-template-columns: 1fr;
     grid-template-rows: 50% 50%;
@@ -163,7 +211,7 @@ a:hover {
     grid-row-gap: 0px;
 }
 
-#fleet-names {
+#fleet-names, #enemy-fleet-names {
     display: grid;
     grid-template-columns: repeat(5, 1fr);
     grid-template-rows: 1fr;
@@ -188,7 +236,7 @@ a:hover {
     padding-top: 10%;
 }
 
-#fleet-health {
+#fleet-health, #enemy-fleet-health {
     display: grid;
     grid-template-columns: repeat(5, 1fr);
     grid-template-rows: 1fr;
@@ -209,9 +257,4 @@ a:hover {
     margin-left: 5%;
     font-size: 0.7em;
     width: 75%;
-    padding-top: 10%;
-}
-
-.ship-health-part {
-
 }

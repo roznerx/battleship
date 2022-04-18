@@ -26,16 +26,16 @@ function renderFleetHealth (player, eToAppend) {
     playerFleet.forEach(s => {
         let healthRender = elementMaker('div', `${s.name}-health`, 'ship-health', '');
         eToAppend.appendChild(healthRender);
-        for (let i = 0; i < s.size; i++) {
+        for (let i = 0; i <= s.size; i++) {
             let healthBarPart = elementMaker('div', `${s.name}-health-part`, 'ship-health-part', '');
+            healthRender.appendChild(healthBarPart);
+            healthRender.style.display = 'grid';
+            healthRender.style.gridTemplateColumns = `repeat(${s.size}, 1fr)`;
+            healthRender.style.gridTemplateRows = '1fr';
+            healthBarPart.style.backgroundColor = 'green';
+            healthBarPart.style.border = 'white';
         }
     });
 }
-
-/*
-healthBarPart.style.display = 'grid';
-healthBarPart.syle.gridTemplateColumns = `repeat(${s.size}, 1fr)`;
-healthBarPart.style.gridTemplateRows = '1fr';
-healthRender.appendChild(healthBarPart);*/
 
 export { elementMaker, renderBoard, renderFleetName , renderFleetHealth };

@@ -28,20 +28,33 @@ function setNewGame() {
     playerName.innerHTML = playerOne.name;
 
     let cpu = (0,_players__WEBPACK_IMPORTED_MODULE_2__.player)((0,_characters__WEBPACK_IMPORTED_MODULE_3__.randomChar)(), 'CPU');
+    let cpuName = document.getElementById('cpu-name');
+    cpuName.innerHTML = cpu.name;
 
     let playerBoard = (0,_gameboard__WEBPACK_IMPORTED_MODULE_1__.gameBoard)();
     playerBoard.makeCoordinates();
+
     let cpuBoard = (0,_gameboard__WEBPACK_IMPORTED_MODULE_1__.gameBoard)();
     cpuBoard.makeCoordinates();
 
     let humanBoard = document.getElementById('human-gameboard');
     (0,_dom__WEBPACK_IMPORTED_MODULE_4__.renderBoard)(playerBoard, humanBoard);
 
+    let enemyBoard = document.getElementById('cpu-gameboard');
+    (0,_dom__WEBPACK_IMPORTED_MODULE_4__.renderBoard)(cpuBoard, enemyBoard);
+
+
     let fleetNames = document.getElementById('fleet-names');
     let fleetHealth = document.getElementById('fleet-health');
 
     (0,_dom__WEBPACK_IMPORTED_MODULE_4__.renderFleetName)(playerOne, fleetNames);
     (0,_dom__WEBPACK_IMPORTED_MODULE_4__.renderFleetHealth)(playerOne, fleetHealth);
+
+    let enemyFleetNames = document.getElementById('enemy-fleet-names');
+    let enemyFleetHealth = document.getElementById('enemy-fleet-health');
+
+    (0,_dom__WEBPACK_IMPORTED_MODULE_4__.renderFleetName)(cpu, enemyFleetNames);
+    (0,_dom__WEBPACK_IMPORTED_MODULE_4__.renderFleetHealth)(cpu, enemyFleetHealth);
 
 
 
@@ -249,17 +262,17 @@ function renderFleetHealth (player, eToAppend) {
     playerFleet.forEach(s => {
         let healthRender = elementMaker('div', `${s.name}-health`, 'ship-health', '');
         eToAppend.appendChild(healthRender);
-        for (let i = 0; i < s.size; i++) {
+        for (let i = 0; i <= s.size; i++) {
             let healthBarPart = elementMaker('div', `${s.name}-health-part`, 'ship-health-part', '');
+            healthRender.appendChild(healthBarPart);
+            healthRender.style.display = 'grid';
+            healthRender.style.gridTemplateColumns = `repeat(${s.size}, 1fr)`;
+            healthRender.style.gridTemplateRows = '1fr';
+            healthBarPart.style.backgroundColor = 'green';
+            healthBarPart.style.border = 'white';
         }
     });
 }
-
-/*
-healthBarPart.style.display = 'grid';
-healthBarPart.syle.gridTemplateColumns = `repeat(${s.size}, 1fr)`;
-healthBarPart.style.gridTemplateRows = '1fr';
-healthRender.appendChild(healthBarPart);*/
 
 
 
