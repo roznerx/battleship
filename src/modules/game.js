@@ -58,6 +58,27 @@ function setNewGame() {
     renderFleetHealth(cpu, enemyFleetHealth);
 
     //TURNS
+    playerOne.turn = false;
+    cpu.turn = true;
+    if (cpu.turn == true) {
+        turnInfo.innerHTML = 'Enemy Turn!';
+        let attackCoords = '';
+        cpu.attack(attackCoords);
+        playerBoard.receiveAttack(attackCoords);
+        playerBoard.coordinatesArr.forEach(c => {
+            if (c.name == attackCoords) {
+                if (c.status == "occupied") {
+                    squares[i].style.backgroundColor = 'red';
+                } else if (c.status == "empty") {
+                    squares[i].innerHTML = 'X';
+                    squares[i].style.color = 'red';
+                }
+            };
+        });
+        cpu.turn = false;
+        playerOne.turn = true;
+    };
+    /*
     playerOne.turn = true;
     cpu.turn = false;
     if (playerOne.turn == true) {
@@ -100,7 +121,7 @@ function setNewGame() {
         });
         cpu.turn = false;
         playerOne.turn = true;
-    }
+    }*/
 }
 
 export { setNewGame };

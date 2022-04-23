@@ -74,10 +74,31 @@ function setNewGame() {
     (0,_dom__WEBPACK_IMPORTED_MODULE_4__.renderFleetHealth)(cpu, enemyFleetHealth);
 
     //TURNS
+    playerOne.turn = false;
+    cpu.turn = true;
+    if (cpu.turn == true) {
+        _dom__WEBPACK_IMPORTED_MODULE_4__.turnInfo.innerHTML = 'Enemy Turn!';
+        let attackCoords = '';
+        cpu.attack(attackCoords);
+        playerBoard.receiveAttack(attackCoords);
+        playerBoard.coordinatesArr.forEach(c => {
+            if (c.name == attackCoords) {
+                if (c.status == "occupied") {
+                    squares[i].style.backgroundColor = 'red';
+                } else if (c.status == "empty") {
+                    squares[i].innerHTML = 'X';
+                    squares[i].style.color = 'red';
+                }
+            };
+        });
+        cpu.turn = false;
+        playerOne.turn = true;
+    };
+    /*
     playerOne.turn = true;
     cpu.turn = false;
     if (playerOne.turn == true) {
-        _dom__WEBPACK_IMPORTED_MODULE_4__.turnInfo.innerHTML = 'Your Turn!';
+        turnInfo.innerHTML = 'Your Turn!';
         let attackCoords = '';
         let squares = enemyBoard.childNodes;
         for (let i = 0; i < squares.length; i++) {
@@ -100,7 +121,7 @@ function setNewGame() {
             });
         };
     } else if (cpu.turn == true) {
-        _dom__WEBPACK_IMPORTED_MODULE_4__.turnInfo.innerHTML = 'Enemy Turn!';
+        turnInfo.innerHTML = 'Enemy Turn!';
         let attackCoords = '';
         cpu.attack(attackCoords);
         playerBoard.receiveAttack(attackCoords);
@@ -116,7 +137,7 @@ function setNewGame() {
         });
         cpu.turn = false;
         playerOne.turn = true;
-    }
+    }*/
 }
 
 
