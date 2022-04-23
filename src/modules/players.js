@@ -10,7 +10,7 @@ let player = (name, type) => {
             battleship: ship('Battleship', 4),
             destroyer: ship('Destroyer', 3),
             submarine: ship('Submarine', 3),
-            patrolBoat: ship('Patrol', 2)
+            patrol: ship('Patrol', 2)
         },
         turn: false,
         attack(atkCoords) {

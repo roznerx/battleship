@@ -10,6 +10,9 @@ function renderBoard(boardToRender, eToAppend) {
     boardToRender.coordinatesArr.forEach(e => {
         let coordRender = elementMaker('div', e.name, 'board-coord', '');
         eToAppend.appendChild(coordRender);
+        if (e.status == 'occupied') {
+            coordRender.style.backgroundColor = 'green';
+        }
     })
 }
 
@@ -38,4 +41,6 @@ function renderFleetHealth (player, eToAppend) {
     });
 }
 
-export { elementMaker, renderBoard, renderFleetName , renderFleetHealth };
+let turnInfo = document.getElementById('turn-info');
+
+export { elementMaker, renderBoard, renderFleetName , renderFleetHealth , turnInfo };

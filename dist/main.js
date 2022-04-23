@@ -22,42 +22,101 @@ __webpack_require__.r(__webpack_exports__);
 
 function setNewGame() {
 
-
+    //PLAYER MAKER
     let playerOne = (0,_players__WEBPACK_IMPORTED_MODULE_2__.player)('Admiral Nachito', 'human');
     let playerName = document.getElementById('player-name');
     playerName.innerHTML = playerOne.name;
-
-    let cpu = (0,_players__WEBPACK_IMPORTED_MODULE_2__.player)((0,_characters__WEBPACK_IMPORTED_MODULE_3__.randomChar)(), 'CPU');
-    let cpuName = document.getElementById('cpu-name');
-    cpuName.innerHTML = cpu.name;
-
     let playerBoard = (0,_gameboard__WEBPACK_IMPORTED_MODULE_1__.gameBoard)();
     playerBoard.makeCoordinates();
 
-    let cpuBoard = (0,_gameboard__WEBPACK_IMPORTED_MODULE_1__.gameBoard)();
-    cpuBoard.makeCoordinates();
+    let carrierCoords = ['A1', 'A2', 'A3', 'A4', 'A5'];
+    playerBoard.placeShip(playerOne.ships.carrier, carrierCoords);
+    let battleshipCoords = ['C1', 'C2', 'C3', 'C4'];
+    playerBoard.placeShip(playerOne.ships.battleship, battleshipCoords);
+    let destroyerCoords = ['E1', 'E2', 'E3'];
+    playerBoard.placeShip(playerOne.ships.destroyer, destroyerCoords);
+    let submarineCoords = ['G1', 'G2', 'G3'];
+    playerBoard.placeShip(playerOne.ships.submarine, submarineCoords);
+    let patrolCoords = ['I1', 'I2'];
+    playerBoard.placeShip(playerOne.ships.patrol, patrolCoords);
 
     let humanBoard = document.getElementById('human-gameboard');
     (0,_dom__WEBPACK_IMPORTED_MODULE_4__.renderBoard)(playerBoard, humanBoard);
+    let fleetNames = document.getElementById('fleet-names');
+    let fleetHealth = document.getElementById('fleet-health');
+    (0,_dom__WEBPACK_IMPORTED_MODULE_4__.renderFleetName)(playerOne, fleetNames);
+    (0,_dom__WEBPACK_IMPORTED_MODULE_4__.renderFleetHealth)(playerOne, fleetHealth);
+    playerOne.turn = true;
+
+    //CPU MAKER
+    let cpu = (0,_players__WEBPACK_IMPORTED_MODULE_2__.player)((0,_characters__WEBPACK_IMPORTED_MODULE_3__.randomChar)(), 'CPU');
+    let cpuName = document.getElementById('cpu-name');
+    cpuName.innerHTML = cpu.name;
+    let cpuBoard = (0,_gameboard__WEBPACK_IMPORTED_MODULE_1__.gameBoard)();
+    cpuBoard.makeCoordinates();
+
+    let enemyCarrierCoords = ['A1', 'A2', 'A3', 'A4', 'A5'];
+    cpuBoard.placeShip(cpu.ships.carrier, enemyCarrierCoords);
+    let enemyBattleshipCoords = ['C1', 'C2', 'C3', 'C4'];
+    cpuBoard.placeShip(cpu.ships.battleship, enemyBattleshipCoords);
+    let enemyDestroyerCoords = ['E1', 'E2', 'E3'];
+    cpuBoard.placeShip(cpu.ships.destroyer, enemyDestroyerCoords);
+    let enemySubmarineCoords = ['G1', 'G2', 'G3'];
+    cpuBoard.placeShip(cpu.ships.submarine, enemySubmarineCoords);
+    let enemyPatrolCoords = ['I1', 'I2'];
+    cpuBoard.placeShip(cpu.ships.patrol, enemyPatrolCoords);
 
     let enemyBoard = document.getElementById('cpu-gameboard');
     (0,_dom__WEBPACK_IMPORTED_MODULE_4__.renderBoard)(cpuBoard, enemyBoard);
-
-
-    let fleetNames = document.getElementById('fleet-names');
-    let fleetHealth = document.getElementById('fleet-health');
-
-    (0,_dom__WEBPACK_IMPORTED_MODULE_4__.renderFleetName)(playerOne, fleetNames);
-    (0,_dom__WEBPACK_IMPORTED_MODULE_4__.renderFleetHealth)(playerOne, fleetHealth);
-
     let enemyFleetNames = document.getElementById('enemy-fleet-names');
     let enemyFleetHealth = document.getElementById('enemy-fleet-health');
-
     (0,_dom__WEBPACK_IMPORTED_MODULE_4__.renderFleetName)(cpu, enemyFleetNames);
     (0,_dom__WEBPACK_IMPORTED_MODULE_4__.renderFleetHealth)(cpu, enemyFleetHealth);
 
-
-
+    //TURNS
+    playerOne.turn = true;
+    cpu.turn = false;
+    if (playerOne.turn == true) {
+        _dom__WEBPACK_IMPORTED_MODULE_4__.turnInfo.innerHTML = 'Your Turn!';
+        let attackCoords = '';
+        let squares = enemyBoard.childNodes;
+        for (let i = 0; i < squares.length; i++) {
+            squares[i].addEventListener("click", () => {
+                attackCoords = squares[i].id;
+                cpuBoard.coordinatesArr.forEach(c => {
+                    if (c.name == attackCoords) {
+                        if (c.status == "occupied") {
+                            squares[i].style.backgroundColor = 'red';
+                        } else if (c.status == "empty") {
+                            squares[i].innerHTML = 'X';
+                            squares[i].style.color = 'red';
+                        }
+                    };
+                });
+                playerOne.attack(attackCoords);
+                cpuBoard.receiveAttack(attackCoords);
+                playerOne.turn = false;
+                cpu.turn = true;
+            });
+        };
+    } else if (cpu.turn == true) {
+        _dom__WEBPACK_IMPORTED_MODULE_4__.turnInfo.innerHTML = 'Enemy Turn!';
+        let attackCoords = '';
+        cpu.attack(attackCoords);
+        playerBoard.receiveAttack(attackCoords);
+        playerBoard.coordinatesArr.forEach(c => {
+            if (c.name == attackCoords) {
+                if (c.status == "occupied") {
+                    squares[i].style.backgroundColor = 'red';
+                } else if (c.status == "empty") {
+                    squares[i].innerHTML = 'X';
+                    squares[i].style.color = 'red';
+                }
+            };
+        });
+        cpu.turn = false;
+        playerOne.turn = true;
+    }
 }
 
 
@@ -181,7 +240,7 @@ let player = (name, type) => {
             battleship: (0,_ships__WEBPACK_IMPORTED_MODULE_0__.ship)('Battleship', 4),
             destroyer: (0,_ships__WEBPACK_IMPORTED_MODULE_0__.ship)('Destroyer', 3),
             submarine: (0,_ships__WEBPACK_IMPORTED_MODULE_0__.ship)('Submarine', 3),
-            patrolBoat: (0,_ships__WEBPACK_IMPORTED_MODULE_0__.ship)('Patrol', 2)
+            patrol: (0,_ships__WEBPACK_IMPORTED_MODULE_0__.ship)('Patrol', 2)
         },
         turn: false,
         attack(atkCoords) {
@@ -232,7 +291,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "elementMaker": () => (/* binding */ elementMaker),
 /* harmony export */   "renderBoard": () => (/* binding */ renderBoard),
 /* harmony export */   "renderFleetHealth": () => (/* binding */ renderFleetHealth),
-/* harmony export */   "renderFleetName": () => (/* binding */ renderFleetName)
+/* harmony export */   "renderFleetName": () => (/* binding */ renderFleetName),
+/* harmony export */   "turnInfo": () => (/* binding */ turnInfo)
 /* harmony export */ });
 let elementMaker = (type, id, className, innerHTML) => {
     let e = document.createElement(type);
@@ -246,6 +306,9 @@ function renderBoard(boardToRender, eToAppend) {
     boardToRender.coordinatesArr.forEach(e => {
         let coordRender = elementMaker('div', e.name, 'board-coord', '');
         eToAppend.appendChild(coordRender);
+        if (e.status == 'occupied') {
+            coordRender.style.backgroundColor = 'green';
+        }
     })
 }
 
@@ -273,6 +336,8 @@ function renderFleetHealth (player, eToAppend) {
         }
     });
 }
+
+let turnInfo = document.getElementById('turn-info');
 
 
 
